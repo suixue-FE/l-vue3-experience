@@ -1,20 +1,29 @@
 <template>
   <div id="app">
     <HelloWorld msg="Welcome to Your Vue.js App" />
+    <h2>{{name}}</h2>
     <button @click="add">click</button>
     <h1>count is {{ count }}</h1>
     <h1>double is {{ double }}</h1>
+    <TodoList></TodoList>
   </div>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
+import TodoList from './components/TodoLIst.vue'
 import { ref, computed } from 'vue'
 
 export default {
   name: 'App',
   components: {
     HelloWorld,
+    TodoList
+  },
+  data(){
+    return{
+      name:'kkb'
+    }
   },
   setup() {
     let { count, add, double } = useCount(1)
