@@ -1,18 +1,46 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <h2>{{name}}</h2>
+    <button @click="add">click</button>
+    <h1>count is {{ count }}</h1>
+    <h1>double is {{ double }}</h1>
+    <TodoList></TodoList>
   </div>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
+import TodoList from './components/TodoLIst.vue'
+import { ref, computed } from 'vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    HelloWorld,
+    TodoList
+  },
+  data(){
+    return{
+      name:'kkb'
+    }
+  },
+  setup() {
+    let { count, add, double } = useCount(1)
+    return { count, add, double }
+  },
+}
+
+// 可拆成单独文件，取代vue2的声明周期
+function useCount(init) {
+  let count = ref(init)
+  let add = () => {
+    count.value++
   }
+  let double = computed(() => {
+    return count.value * 2
+  })
+  return { count, add, double }
 }
 </script>
 
