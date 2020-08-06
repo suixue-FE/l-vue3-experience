@@ -1,4 +1,4 @@
-/* eslint-disable vue/comment-directive */
+<!-- /* eslint-disable vue/comment-directive */ -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,11 +8,27 @@
 </head>
 <body>
   <div id="app">
-
   </div>
-  <div id="btn"></div>
+  <div id="btn">点击</div>
 </body>
 </html>
+<script src="./l-vue3.js"></script>
 <script>
-   
+   const app = document.getElementById('app')
+   const btn = document.getElementById('btn')
+   let obj = reactive({
+     name:'李三三',
+     age:24
+   })
+   let double = computed(()=>{
+     return obj.age * 2
+   })
+   effect(()=>{
+     console.log('数据变化',obj.age);
+     app.innerHTML = `<h1>${obj.name}今年${obj.age}岁</h1>${double.value}`
+   })
+
+   btn.addEventListener('click',()=>{
+     obj.age+=1
+   },false)
 </script>
