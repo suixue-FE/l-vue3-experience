@@ -8,7 +8,7 @@
   </div>
 </template>
 <script>
-import {reactive} from 'vue'
+import {reactive, watchEffect} from 'vue'
 import scroll from '../scroll'
 export default {
   setup(){
@@ -36,6 +36,9 @@ export default {
           })
           state.newTodos = ''
       }
+      watchEffect(()=>{
+        console.log('state is',state.todos);
+      })
       const {top} = scroll()
       return {state,addNewTodo,top}
   }
